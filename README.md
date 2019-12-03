@@ -16,7 +16,7 @@ BIP39 has come under heavy criticism for not having versioning built in:
 >
 >For these reasons, Electrum does not generate BIP39 seeds.
 
-\- [Electrum Documentation](http://docs.electrum.org/en/latest/seedphrase.html) 2017-01-27
+\- [Electrum Documentation](https://electrum.readthedocs.io/en/latest/seedphrase.html#motivation) 2017-01-27
 
 Despite these criticisms, BIP39 is by far the most popular seed format, migrating the ecosystem to a new incompatible format with versioning would probably cause more harm than good.
 
