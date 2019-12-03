@@ -1,0 +1,27 @@
+{
+  "name": "bip39-versioned",
+  "version": "0.0.0",
+  "main": "src/index.js",
+  "files": [
+    "src"
+  ],
+  "description": "Proof of concept adding versioning to BIP39 compatible seeds",
+  "license": "MIT",
+  "repository": "lukechilds/bip39-versioned",
+  "author": "Luke Childs <lukechilds123@gmail.com> (https://lukechilds.co.uk)",
+  "scripts": {
+    "test": "xo && nyc ava",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "keywords": [
+    "bitcoin",
+    "cryptocurrency",
+    "bip39"
+  ],
+  "devDependencies": {
+    "ava": "^2.4.0",
+    "coveralls": "^3.0.8",
+    "nyc": "^14.1.1",
+    "xo": "^0.25.3"
+  }
+}
