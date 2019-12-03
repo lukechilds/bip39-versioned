@@ -32,11 +32,13 @@ test('bip39v.generateMnemonic() defaults to P2PKH version byte', t => {
 	t.is(versionByte, fixtures.versionBytes.P2PKH);
 });
 
-test('bip39v.generateMnemonic(length, version) adds correct version byte', t => {
+test('bip39v.generateMnemonic(length, version) adds correct version', t => {
 	Object.entries(fixtures.versionBytes).forEach(([version, byte]) => {
 		const mnemonic = bip39v.generateMnemonic(128, bip39v.versions[version]);
 		const versionByte = bip39v.mnemonicToVersionByte(mnemonic);
+		const versionString = bip39v.mnemonicToVersion(mnemonic);
 		t.is(versionByte, bip39v.versions[version]);
 		t.is(versionByte, byte);
+		t.is(versionString, version);
 	});
 });
