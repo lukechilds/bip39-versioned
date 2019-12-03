@@ -8,3 +8,11 @@ test('bip39v is exported', t => {
 test('bip39v.generateMnemonic() defaults to 12 words', t => {
 	t.is(bip39v.generateMnemonic().split(' ').length, 12);
 });
+
+test('bip39v.generateMnemonic(length) generates different length mnemonics', t => {
+	t.is(bip39v.generateMnemonic(128).split(' ').length, 12);
+	t.is(bip39v.generateMnemonic(160).split(' ').length, 15);
+	t.is(bip39v.generateMnemonic(192).split(' ').length, 18);
+	t.is(bip39v.generateMnemonic(224).split(' ').length, 21);
+	t.is(bip39v.generateMnemonic(256).split(' ').length, 24);
+});
