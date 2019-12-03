@@ -6,6 +6,12 @@ const fixtures = {
 		P2PKH: 0x00,
 		P2WPKHP2SH: 0x01,
 		P2WPKH: 0x02
+	},
+	mnemonics: {
+		P2PKH: 'above rack wait angle thank ribbon strategy gallery silk leave brave swarm',
+		P2WPKHP2SH: 'abuse lottery polar torch prison option common common mix moon wonder length',
+		P2WPKH: 'across sword flip inspire allow joke skate drip icon lady emerge toss',
+		UNKNOWN: 'such galaxy much glimpse music turkey toward exhaust filter key pilot hello'
 	}
 };
 
@@ -40,5 +46,13 @@ test('bip39v.generateMnemonic(length, version) adds correct version', t => {
 		t.is(versionByte, bip39v.versions[version]);
 		t.is(versionByte, byte);
 		t.is(versionString, version);
+	});
+});
+
+test('bip39v.mnemonicToVersionByte(mnemonic) against fixture data', t => {
+	Object.entries(fixtures.mnemonics).forEach(([version, mnemonic]) => {
+		const versionByte = bip39v.mnemonicToVersionByte(mnemonic);
+		const expectedVersionByte = version === 'UNKNOWN' ? 216 : fixtures.versionBytes[version];
+		t.is(versionByte, expectedVersionByte);
 	});
 });
