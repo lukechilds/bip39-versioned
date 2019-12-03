@@ -26,8 +26,6 @@ bip39v.mnemonicToVersionByte = mnemonic => {
 	return entropy[0];
 };
 
-bip39v.mnemonicToVersionByte = mnemonic => getEntropyBuffer(mnemonic)[0];
-
 bip39v.mnemonicToVersion = mnemonic => {
 	const versionByte = bip39v.mnemonicToVersionByte(mnemonic);
 
