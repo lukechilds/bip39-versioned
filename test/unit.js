@@ -56,3 +56,10 @@ test('bip39v.mnemonicToVersionByte(mnemonic) against fixture data', t => {
 		t.is(versionByte, expectedVersionByte);
 	});
 });
+
+test('bip39v.mnemonicToVersion(mnemonic) against fixture data', t => {
+	Object.entries(fixtures.mnemonics).forEach(([version, mnemonic]) => {
+		const versionString = bip39v.mnemonicToVersion(mnemonic);
+		t.is(versionString, version);
+	});
+});
