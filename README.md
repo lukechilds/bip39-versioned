@@ -116,7 +116,3 @@ An example of a 128 bit versioned mnemonic under this scheme would be:
 ```
 seed version ability decline way brick marine unfold always armor gate flower wedding cannon urge
 ```
-
-## License
-
-MIT © Luke Childs
