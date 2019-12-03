@@ -22,7 +22,7 @@ Despite these criticisms, BIP39 is by far the most popular seed format, migratin
 
 This repo is a proof of concept for how versioning information could be added to BIP39 seeds in a backwards compatible way.
 
-### Implementation
+## Implementation
 
 This proof of concept uses a very simple implementation adjustment of interpreting the first byte of the entropy as a version byte. So where a 12 word mnemonic is normally interpreted as `128 bit entropy + 4 bit checksum` it's now interpreted as `8 bit version data + 120 bit entropy + 4 bit checksum`. When deriving the seed from the input entropy the version byte is prepended to the entropy to ensure compatibility between versioned and non-versioned mnemonics.
 
@@ -57,17 +57,17 @@ assert(bip39v.mnemonicToVersionByte(mnemonic) === 0xD8);
 assert(bip39v.mnemonicToVersion(mnemonic) === 'UNKNOWN');
 ```
 
-#### Caveats
+### Caveats
 
-##### Entropy Reduction
+#### Entropy Reduction
 
 Replacing the first 8 bits of entropy with a version byte means a versioned mnemonic will always have 8 bits less entropy than a non-versioned mnemonic of equivalent word length.
 
-###### Solution
+##### Solution
 
 Due to this, it would probably be wise to recommend wallets generating versioned mnemonics always use a minimum of 15 words. This would provide 152 bits of entropy which exceeds the 128 bit entropy minimum provided by existing non-versioned 12 words mnemonics.
 
-##### False Positives
+#### False Positives
 
 When a "version aware" wallet decodes a non-versioned BIP39 mnemonic, there is a small false positive rate where it may mistakenly interpret a version number. This proof of concept uses one byte for versioning information where there are currently three accepted values, this means there's just under a 1.2% chance that a non-versioned BIP39 mnemonic could be interpreted as a versioned mnemonic.
 
@@ -75,7 +75,7 @@ I don't see this as a huge issue considering that the current situation is that 
 
 It should be noted that the false positive rate will increase as more version numbers are added.
 
-###### Solution
+##### Solution
 
 If there is concern that this false positive rate is too high and more certainty is needed that a seed is intentionally versioned, this can be improved. The false positive rate could be reduced massively by increasing the amount of bits interpreted as version data.
 
