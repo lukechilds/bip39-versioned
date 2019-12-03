@@ -1,6 +1,14 @@
 import test from 'ava';
 import bip39v from '..';
 
+const fixtures = {
+	versionBytes: {
+		P2PKH: 0x00,
+		P2WPKHP2SH: 0x01,
+		P2WPKH: 0x02
+	}
+};
+
 test('bip39v is exported', t => {
 	t.not(bip39v, undefined);
 });
@@ -21,5 +29,14 @@ test('bip39v.generateMnemonic() defaults to P2PKH version byte', t => {
 	const mnemonic = bip39v.generateMnemonic();
 	const versionByte = bip39v.mnemonicToVersionByte(mnemonic);
 	t.is(versionByte, bip39v.versions.P2PKH);
-	t.is(versionByte, 0x00);
+	t.is(versionByte, fixtures.versionBytes.P2PKH);
+});
+
+test('bip39v.generateMnemonic(length, version) adds correct version byte', t => {
+	Object.entries(fixtures.versionBytes).forEach(([version, byte]) => {
+		const mnemonic = bip39v.generateMnemonic(128, bip39v.versions[version]);
+		const versionByte = bip39v.mnemonicToVersionByte(mnemonic);
+		t.is(versionByte, bip39v.versions[version]);
+		t.is(versionByte, byte);
+	});
 });
