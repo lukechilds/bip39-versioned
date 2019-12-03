@@ -52,7 +52,7 @@ test('bip39v.generateMnemonic(length, version) adds correct version', t => {
 test('bip39v.mnemonicToVersionByte(mnemonic) against fixture data', t => {
 	Object.entries(fixtures.mnemonics).forEach(([version, mnemonic]) => {
 		const versionByte = bip39v.mnemonicToVersionByte(mnemonic);
-		const expectedVersionByte = version === 'UNKNOWN' ? 216 : fixtures.versionBytes[version];
+		const expectedVersionByte = version === 'UNKNOWN' ? 0xD8 : fixtures.versionBytes[version];
 		t.is(versionByte, expectedVersionByte);
 	});
 });
