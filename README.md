@@ -10,13 +10,13 @@ BIP39 has come under heavy criticism for not having versioning built in:
 
 >The lack of versioning is a serious design flaw in this proposal. On this basis alone I would recommend against use of this proposal.
 
-\- [Greg Maxwell](https://github.com/bitcoin/bips/wiki/Comments:BIP-0039/fd2ddb6d840c6a91c98a29146b9a62d6a65d03bf) 2017-03-14
+\- [Greg Maxwell 2017-03-14](https://github.com/bitcoin/bips/wiki/Comments:BIP-0039/fd2ddb6d840c6a91c98a29146b9a62d6a65d03bf)
 
 >BIP39 seed phrases do not include a version number. This means that software should always know how to generate keys and addresses. BIP43 suggests that wallet software will try various existing derivation schemes within the BIP32 framework. This is extremely inefficient and rests on the assumption that future wallets will support all previously accepted derivation methods. If, in the future, a wallet developer decides not to implement a particular derivation method because it is deprecated, then the software will not be able to detect that the corresponding seed phrases are not supported, and it will return an empty wallet instead. This threatens users funds.
 >
 >For these reasons, Electrum does not generate BIP39 seeds.
 
-\- [Electrum Documentation](https://electrum.readthedocs.io/en/latest/seedphrase.html#motivation) 2017-01-27
+\- [Electrum Documentation 2017-01-27](https://electrum.readthedocs.io/en/latest/seedphrase.html#motivation)
 
 Despite these criticisms, BIP39 is by far the most popular seed format, migrating the ecosystem to a new incompatible format with versioning would probably cause more harm than good.
 
