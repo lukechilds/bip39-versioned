@@ -8,9 +8,9 @@ const fixtures = {
 		P2WPKH: 0x02
 	},
 	mnemonics: {
-		P2PKH: 'above rack wait angle thank ribbon strategy gallery silk leave brave swarm',
-		P2WPKHP2SH: 'abuse lottery polar torch prison option common common mix moon wonder length',
-		P2WPKH: 'across sword flip inspire allow joke skate drip icon lady emerge toss',
+		P2PKH: 'seed version abandon bus rebuild logic connect wise illegal traffic transfer olympic royal style equal',
+		P2WPKHP2SH: 'seed version about math twice crater force critic grace panic party label flag draft sketch',
+		P2WPKH: 'seed version absent reward pipe sketch clarify sight spread addict divorce idle burst alarm tide',
 		UNKNOWN: 'such galaxy much glimpse music turkey toward exhaust filter key pilot hello'
 	}
 };
@@ -19,16 +19,15 @@ test('bip39v is exported', t => {
 	t.not(bip39v, undefined);
 });
 
-test('bip39v.generateMnemonic() defaults to 12 words', t => {
-	t.is(bip39v.generateMnemonic().split(' ').length, 12);
+test('bip39v.generateMnemonic() defaults to 24 words', t => {
+	t.is(bip39v.generateMnemonic().split(' ').length, 24);
 });
 
 test('bip39v.generateMnemonic(length) generates different length mnemonics', t => {
-	t.is(bip39v.generateMnemonic(128).split(' ').length, 12);
-	t.is(bip39v.generateMnemonic(160).split(' ').length, 15);
-	t.is(bip39v.generateMnemonic(192).split(' ').length, 18);
-	t.is(bip39v.generateMnemonic(224).split(' ').length, 21);
-	t.is(bip39v.generateMnemonic(256).split(' ').length, 24);
+	t.is(bip39v.generateMnemonic(128).split(' ').length, 15);
+	t.is(bip39v.generateMnemonic(160).split(' ').length, 18);
+	t.is(bip39v.generateMnemonic(192).split(' ').length, 21);
+	t.is(bip39v.generateMnemonic(224).split(' ').length, 24);
 });
 
 test('bip39v.generateMnemonic() defaults to P2PKH version byte', t => {
@@ -52,7 +51,7 @@ test('bip39v.generateMnemonic(length, version) adds correct version', t => {
 test('bip39v.mnemonicToVersionByte(mnemonic) against fixture data', t => {
 	Object.entries(fixtures.mnemonics).forEach(([version, mnemonic]) => {
 		const versionByte = bip39v.mnemonicToVersionByte(mnemonic);
-		const expectedVersionByte = version === 'UNKNOWN' ? 0xD8 : fixtures.versionBytes[version];
+		const expectedVersionByte = version === 'UNKNOWN' ? 0x44 : fixtures.versionBytes[version];
 		t.is(versionByte, expectedVersionByte);
 	});
 });
