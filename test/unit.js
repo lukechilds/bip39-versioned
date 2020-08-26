@@ -11,8 +11,9 @@ const fixtures = {
 		P2PKH: 'seed version abandon bus rebuild logic connect wise illegal traffic transfer olympic royal style equal',
 		P2WPKHP2SH: 'seed version about math twice crater force critic grace panic party label flag draft sketch',
 		P2WPKH: 'seed version absent reward pipe sketch clarify sight spread addict divorce idle burst alarm tide',
-		UNKNOWN: 'such galaxy much glimpse music turkey toward exhaust filter key pilot hello'
-	}
+		UNKNOWN: 'seed version divide rural field error snack clump gather shift globe mask trend october ten'
+	},
+	nonVersionedMnemonic: 'much bottom such hurt hunt welcome cushion erosion pulse admit name deer'
 };
 
 test('bip39v is exported', t => {
@@ -48,10 +49,19 @@ test('bip39v.generateMnemonic(length, version) adds correct version', t => {
 	});
 });
 
+test('bip39v.isVersionedMnemonic(mnemonic) against fixture data', t => {
+	Object.values(fixtures.mnemonics).forEach(mnemonic => {
+		const isVersionedMnemonic = bip39v.isVersionedMnemonic(mnemonic);
+		t.true(isVersionedMnemonic);
+	});
+	const isVersionedMnemonic = bip39v.isVersionedMnemonic(fixtures.nonVersionedMnemonic);
+	t.false(isVersionedMnemonic);
+});
+
 test('bip39v.mnemonicToVersionByte(mnemonic) against fixture data', t => {
 	Object.entries(fixtures.mnemonics).forEach(([version, mnemonic]) => {
 		const versionByte = bip39v.mnemonicToVersionByte(mnemonic);
-		const expectedVersionByte = version === 'UNKNOWN' ? 0x44 : fixtures.versionBytes[version];
+		const expectedVersionByte = version === 'UNKNOWN' ? 0xFF : fixtures.versionBytes[version];
 		t.is(versionByte, expectedVersionByte);
 	});
 });
