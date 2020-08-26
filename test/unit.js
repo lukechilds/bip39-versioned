@@ -64,6 +64,7 @@ test('bip39v.mnemonicToVersionByte(mnemonic) against fixture data', t => {
 		const expectedVersionByte = version === 'UNKNOWN' ? 0xFF : fixtures.versionBytes[version];
 		t.is(versionByte, expectedVersionByte);
 	});
+	t.throws(() => bip39v.mnemonicToVersionByte(fixtures.nonVersionedMnemonic));
 });
 
 test('bip39v.mnemonicToVersion(mnemonic) against fixture data', t => {
@@ -71,4 +72,5 @@ test('bip39v.mnemonicToVersion(mnemonic) against fixture data', t => {
 		const versionString = bip39v.mnemonicToVersion(mnemonic);
 		t.is(versionString, version);
 	});
+	t.throws(() => bip39v.mnemonicToVersion(fixtures.nonVersionedMnemonic));
 });
