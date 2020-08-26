@@ -7,14 +7,14 @@ const P2PKH = 0x00;
 const P2WPKHP2SH = 0x01;
 const P2WPKH = 0x02;
 
+const bip39v = {
+	versions: {P2PKH, P2WPKHP2SH, P2WPKH}
+};
+
 const getMnemonicBuffer = mnemonic => Buffer.from(
 	bip39.mnemonicToEntropy(mnemonic),
 	'hex'
 );
-
-const bip39v = {
-	versions: {P2PKH, P2WPKHP2SH, P2WPKH}
-};
 
 bip39v.generateMnemonic = (length = 224, versionByte = P2PKH) => {
 	const buffer = Buffer.concat([
