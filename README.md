@@ -84,7 +84,7 @@ I would suggest using a three byte constant of `0xC2FE58` plus a one byte versio
 This has the following benefits:
 
 - All versioned seeds will start with the two words `seed version` so they are humanly recognisable.
-- The false positive rate is reduced to 0.00000596%.
+- The false positive rate is reduced to 0.00000006%.
 - Adding new version numbers doesn't increase false positive rate.
 - BIP39 entropy increases in intervals of 32 bits and the version constant + data take up exactly 32 bits. This allows us to just shift the word length for a given amount of entropy.
 
